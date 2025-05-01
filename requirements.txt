@@ -41,6 +41,7 @@ huggingface-hub==0.30.2
 idna==3.10
 ipykernel==6.29.5
 ipython==8.35.0
+ipywidgets==8.1.6
 isoduration==20.11.0
 jedi==0.19.2
 Jinja2==3.1.6
@@ -59,6 +60,7 @@ jupyter_server_terminals==0.5.3
 jupyterlab==4.4.0
 jupyterlab_pygments==0.3.0
 jupyterlab_server==2.27.3
+jupyterlab_widgets==3.0.14
 kiwisolver==1.4.8
 MarkupSafe==3.0.2
 matplotlib==3.10.1
@@ -100,6 +102,7 @@ platformdirs==4.3.7
 prometheus_client==0.21.1
 prompt_toolkit==3.0.51
 propcache==0.3.1
+protobuf==6.30.2
 psutil==7.0.0
 ptyprocess==0.7.0
 pure_eval==0.2.3
@@ -122,6 +125,7 @@ rpds-py==0.24.0
 safetensors==0.5.3
 scikit-learn==1.6.1
 scipy==1.15.2
+seaborn==0.13.2
 Send2Trash==1.8.3
 sentencepiece==0.2.0
 six==1.17.0
@@ -151,5 +155,6 @@ wcwidth==0.2.13
 webcolors==24.11.1
 webencodings==0.5.1
 websocket-client==1.8.0
+widgetsnbextension==4.0.14
 xxhash==3.5.0
 yarl==1.20.0
