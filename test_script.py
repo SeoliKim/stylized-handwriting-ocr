@@ -218,7 +218,7 @@ def main():
     
     
     # Save evlaution result
-    results_df.to_csv(args.result_path)
+    results_df.to_csv(args.result_path, index=False)
 
 if __name__ == "__main__":
     main()
