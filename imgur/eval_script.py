@@ -60,34 +60,24 @@ def main():
     
     with open(args.dataset_dir+'/dfwords_0_20000.pkl', 'rb') as file:
         loaded_dfwords1 = pickle.load(file)
-    
     with open(args.dataset_dir+'/dfwords_20000_40000.pkl', 'rb') as file:
         loaded_dfwords2 = pickle.load(file)
-    
     with open(args.dataset_dir+'/dfwords_40000_60000.pkl', 'rb') as file:
         loaded_dfwords3 = pickle.load(file)
-    
     with open(args.dataset_dir+'/dfwords_60000_80000.pkl', 'rb') as file:
         loaded_dfwords4 = pickle.load(file)
-    
     with open(args.dataset_dir+'/dfwords_80000_100000.pkl', 'rb') as file:
         loaded_dfwords5 = pickle.load(file)
-    
     with open(args.dataset_dir+'/dfwords_100000_120000.pkl', 'rb') as file:
         loaded_dfwords6 = pickle.load(file)
-    
     with open(args.dataset_dir+'/dfwords_120000_140000.pkl', 'rb') as file:
         loaded_dfwords7 = pickle.load(file)
-    
     with open(args.dataset_dir+'/dfwords_140000_160000.pkl', 'rb') as file:
         loaded_dfwords8 = pickle.load(file)
-    
     with open(args.dataset_dir+'/dfwords_160000_180000.pkl', 'rb') as file:
         loaded_dfwords9 = pickle.load(file)
-    
     with open(args.dataset_dir+'/dfwords_180000_200000.pkl', 'rb') as file:
         loaded_dfwords10 = pickle.load(file)
-    
     with open(args.dataset_dir+'/dfwords_200000_227055.pkl', 'rb') as file:
         loaded_dfwords11 = pickle.load(file)
     
