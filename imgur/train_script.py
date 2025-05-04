@@ -266,18 +266,18 @@ def main():
     from transformers import Seq2SeqTrainer, Seq2SeqTrainingArguments
     
     training_args = Seq2SeqTrainingArguments(
-        predict_with_generate=True,
+         predict_with_generate=True,
         eval_strategy="steps",
-        num_train_epochs=1, 
-        per_device_train_batch_size=4,  # Reduced batch size (e.g., 4 instead of 8)
-        per_device_eval_batch_size=2,   # Match eval batch size
-        gradient_accumulation_steps=2,   # Accumulate gradients to maintain effective batch size
-        fp16=True, 
-        output_dir= args.model_dir,
+        num_train_epochs=1,
+        per_device_train_batch_size=4,
+        per_device_eval_batch_size=2,
+        gradient_accumulation_steps=2,
+        fp16=True,
+        output_dir=args.model_dir,
         logging_steps=2,
-        save_steps=4000,  # Set to a very large number
-        eval_steps=4000,
-        save_total_limit=1,  
+        save_steps=1000,
+        eval_steps=1000,
+        save_total_limit=1,
         load_best_model_at_end=True
     )
 
