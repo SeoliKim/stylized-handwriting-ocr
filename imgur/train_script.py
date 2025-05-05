@@ -247,13 +247,6 @@ def main():
     max_target_len = int(df_train['text'].apply(len).quantile(0.95))
     print("maximum target length", max_target_len)
 
-    # Token Alignment
-    # set special tokens used for creating the decoder_input_ids from the labels
-    model.config.decoder_start_token_id = processor.tokenizer.cls_token_id
-    model.config.pad_token_id = processor.tokenizer.pad_token_id
-    # make sure vocab size is set correctly
-    model.config.vocab_size = len(processor.tokenizer)
-
 
     from transformers import Seq2SeqTrainer, Seq2SeqTrainingArguments, GenerationConfig
 
@@ -263,7 +256,8 @@ def main():
         early_stopping=True,            
         length_penalty=1.0,             
         repetition_penalty=1.5,         
-        no_repeat_ngram_size=3,                     
+        no_repeat_ngram_size=3, 
+        decoder_start_token_id=processor.tokenizer.cls_token_id,
     )
     
     training_args = Seq2SeqTrainingArguments(
@@ -287,12 +281,20 @@ def main():
         generation_config=generation_config,
     )
 
+    # Token Alignment
+    # set special tokens used for creating the decoder_input_ids from the labels
+    model.config.decoder_start_token_id = processor.tokenizer.cls_token_id
+    model.config.pad_token_id = processor.tokenizer.pad_token_id
+    # make sure vocab size is set correctly
+    model.config.vocab_size = len(processor.tokenizer)
+    model.generation_config = generation_config
+
     from transformers import default_data_collator
     
     # instantiate trainer
     trainer = Seq2SeqTrainer(
         model=model,
-        tokenizer=processor.image_processor,
+        tokenizer=processor.tokenizer,
         args=training_args,
         compute_metrics=compute_metrics,
         train_dataset=train_dataset,
