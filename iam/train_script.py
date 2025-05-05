@@ -50,74 +50,18 @@ def main():
 
     # 1.1 Loading the Image Data
     import os
-    
     # Change to your desired directory
-    os.chdir(args.project_dir)
+    os.chdir(args.project_dir) 
     # Confirm it's changed
     print("Current directory:", os.getcwd())
 
-    # load all data
-    import pickle
-    
-    with open(args.dataset_dir+'/dfwords_0_20000.pkl', 'rb') as file:
-        loaded_dfwords1 = pickle.load(file)
-    with open(args.dataset_dir+'/dfwords_20000_40000.pkl', 'rb') as file:
-        loaded_dfwords2 = pickle.load(file)
-    with open(args.dataset_dir+'/dfwords_40000_60000.pkl', 'rb') as file:
-        loaded_dfwords3 = pickle.load(file)
-    with open(args.dataset_dir+'/dfwords_60000_80000.pkl', 'rb') as file:
-        loaded_dfwords4 = pickle.load(file)
-    with open(args.dataset_dir+'/dfwords_80000_100000.pkl', 'rb') as file:
-        loaded_dfwords5 = pickle.load(file)
-    with open(args.dataset_dir+'/dfwords_100000_120000.pkl', 'rb') as file:
-        loaded_dfwords6 = pickle.load(file)
-    with open(args.dataset_dir+'/dfwords_120000_140000.pkl', 'rb') as file:
-        loaded_dfwords7 = pickle.load(file)
-    with open(args.dataset_dir+'/dfwords_140000_160000.pkl', 'rb') as file:
-        loaded_dfwords8 = pickle.load(file)
-    with open(args.dataset_dir+'/dfwords_160000_180000.pkl', 'rb') as file:
-        loaded_dfwords9 = pickle.load(file)
-    with open(args.dataset_dir+'/dfwords_180000_200000.pkl', 'rb') as file:
-        loaded_dfwords10 = pickle.load(file)
-    with open(args.dataset_dir+'/dfwords_200000_227055.pkl', 'rb') as file:
-        loaded_dfwords11 = pickle.load(file)
-
-    # merge into one dataframe
-    import pandas as pd
-    
-    loaded_dfwords = pd.concat([loaded_dfwords1, loaded_dfwords2], ignore_index=True)  # vertical stack
-    loaded_dfwords = pd.concat([loaded_dfwords, loaded_dfwords3], ignore_index=True)  # vertical stack
-    loaded_dfwords = pd.concat([loaded_dfwords, loaded_dfwords4], ignore_index=True)  # vertical stack
-    loaded_dfwords = pd.concat([loaded_dfwords, loaded_dfwords5], ignore_index=True)  # vertical stack
-    loaded_dfwords = pd.concat([loaded_dfwords, loaded_dfwords6], ignore_index=True)  # vertical stack
-    loaded_dfwords = pd.concat([loaded_dfwords, loaded_dfwords7], ignore_index=True)  # vertical stack
-    loaded_dfwords = pd.concat([loaded_dfwords, loaded_dfwords8], ignore_index=True)  # vertical stack
-    loaded_dfwords = pd.concat([loaded_dfwords, loaded_dfwords9], ignore_index=True)  # vertical stack
-    loaded_dfwords = pd.concat([loaded_dfwords, loaded_dfwords10], ignore_index=True)  # vertical stack
-    loaded_dfwords = pd.concat([loaded_dfwords, loaded_dfwords11], ignore_index=True)  # vertical stack
-
-    # confirm if loaded correctly
-    loaded_dfwords.info()
-    loaded_dfwords.head(3)
-
-
     # 1.2 Loading the Training Data
-    df_train_info= pd.read_csv(args.dataset_dir+"/dataset_info/df_train_info.csv") 
-    df_train_info.head()
-    df_train_info_premerge= df_train_info.drop(['id', 'text'], axis=1)
-
-    df_train= pd.merge(
-        loaded_dfwords.reset_index(), 
-        df_train_info_premerge, 
-        left_on='index', 
-        right_on='word_idx',
-        how='right'  
-    )
-
-    # check if df_train is loaded correctly
-    df_train.info()
+    import pandas as pd
+    df_train= pd.read_csv(args.dataset_dir+"/dataset_info/df_train_info_iam.csv")
     df_train.head()
-
+    # Check if testing dataset is loaded correctly
+    df_train.info()
+    df_train['text'] = df_train['text'].astype(str)
 
     # 1.3 Splitting the Training Data into Training and Validation Subsets
     from sklearn.model_selection import train_test_split
@@ -129,6 +73,24 @@ def main():
     eval_df = eval_df.reset_index(drop=True)
     train_df.info()
     eval_df.info()
+
+    from PIL import Image
+    # 1.3 read image
+    images_path= args.dataset_dir
+    def get_image(df, image_id):
+        image_file_path= images_path+ '/words'
+        subfolder = image_id.split('-')[0]
+        subfolder2 = subfolder + "-" + image_id.split('-')[1]
+        image_file_name = image_id + ".png"
+        image_path = os.path.join(image_file_path, subfolder, subfolder2, image_file_name)
+        
+        try:
+            with Image.open(image_path) as img:
+                img_rgb = img.convert("RGB")  # Convert to RGB
+                return img_rgb.copy()  # Return a copy after conversion
+        except Exception as e:
+            print(f"Error opening image file {image_path}: {e}")
+            return None
 
     # Step 2. Running the Model
 
@@ -159,9 +121,9 @@ def main():
               text = self.df['text'][idx]
               if not isinstance(text, str) or not text.strip():
                   raise ValueError(f"Invalid text at index {idx}: {repr(text)}")
-              image_id = self.df['id'][idx]
+              image_id = self.df['image_id'][idx]
               try:
-                  image = self.df['image'][idx]
+                  image = get_image(self.df, image_id)
               except Exception as e:
                   raise ValueError(f"Failed to load image for ID {image_id} at index {idx}") from e
               try:
@@ -263,13 +225,13 @@ def main():
         early_stopping=True,            
         length_penalty=1.0,             
         repetition_penalty=1.5,         
-        no_repeat_ngram_size=3,                     
+        no_repeat_ngram_size=3,                       
     )
     
     training_args = Seq2SeqTrainingArguments(
         predict_with_generate=True,
         eval_strategy="steps",
-        num_train_epochs=1,
+        num_train_epochs=1.87,
         per_device_train_batch_size=4,
         per_device_eval_batch_size=2,
         gradient_accumulation_steps=2,
