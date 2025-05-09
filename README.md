@@ -10,21 +10,23 @@ Complete the following steps:
    - **IMGUR database**: [IMGUR5K Handwriting Dataset Repository](https://github.com/facebookresearch/IMGUR5K-Handwriting-Dataset)
    - **IAM database**: [Kaggle IAM Database]([https://github.com/facebookresearch/IMGUR5K-Handwriting-Dataset](https://www.kaggle.com/datasets/nibinv23/iam-handwriting-word-database))
 
+## Quick Start
+Run the [`code-overview.ipynb`](code-overview.ipynb) to go through an overview the data-processing, training and testing process. 
+
+
 ## Usage
 1.  For Imgur dataset, run [`imgur-process_dataset.ipynb`](/imgur/dataset/process_dataset.ipynb) to crop full-page images into word images and save the word-image data on the respective directory.
-2.  Move  
+2.  Make sure  *dataset_info* for IAM and IMGUR dataset are in the same folder with the downloaded dataset.
+3.  Run **train_script.py** in `iam/` and `imgur` to train the model.
+4.  Run **eval_script.py** in `iam/` and `imgur` to evaluate the model.
 
-3. Run [`process_dataset.ipynb`](/stylized/dataset/process_dataset.ipynb) to crop words from full-page images and save them as individual word images.
-   - The processed words are saved as pickle files for efficient loading.
-
-4. The dataset is separated into training and testing sets (typically 80-20 split) for consistent evaluation.
-   - Directory: [`save_train_test.ipynb`](/stylized/dataset/save_train_test.ipynb)
-
-5. Use [`train_script`](/stylized/train/train_script.py) to fine-tune the TrOCR-based model on the training dataset.
-   - For our research, we fine-tuned on two base models:
-      - microsoft/trocr-base-stage1
-      - microsoft/trocr-base-stage1
-
-6. Use [`test_script`](/stylized/test/test_script.py) to evaluate the model performance on the test set.
+## Results
+The output of our research is stored in [`results`](/results) folder, this includes evaluation on the Imgur and IAM testing set for the following 4 models:
+- base-imgur: microsoft/trocr-base-stage1 fine-tuned on Imgur dataset
+- small-imgur: microsoft/trocr-small-stage1 fine-tuned on Imgur dataset
+- base-iam: microsoft/trocr-base-stage1 fine-tuned on IAM dataset
+- small-iam: microsoft/trocr-small-stage1 fine-tuned on IAM dataset
+- [base-handwritten](https://huggingface.co/microsoft/trocr-base-handwritten): public fine-tuned model
+- [small-handwritten](https://huggingface.co/microsoft/trocr-small-handwritten): public fine-tuned model
 
 
