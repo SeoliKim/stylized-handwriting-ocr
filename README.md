@@ -8,7 +8,7 @@ Complete the following steps:
 2. Create python virtual environment using *requirements.txt*
 3. Download the following database:
    - **IMGUR database**: [IMGUR5K Handwriting Dataset Repository](https://github.com/facebookresearch/IMGUR5K-Handwriting-Dataset)
-   - **IAM database**: [Kaggle IAM Database](https://www.kaggle.com/datasets/nibinv23/iam-handwriting-word-database))
+   - **IAM database**: [Kaggle IAM Database](https://www.kaggle.com/datasets/nibinv23/iam-handwriting-word-database)
 
 ## Quick Start
 Run the [`code-overview.ipynb`](code-overview.ipynb) to go through an overview the data-processing, training and testing process. 
