@@ -8,7 +8,7 @@ Complete the following steps:
 2. Create python virtual environment using *requirements.txt*
 3. Download the following database:
    - **IMGUR database**: [IMGUR5K Handwriting Dataset Repository](https://github.com/facebookresearch/IMGUR5K-Handwriting-Dataset)
-   - **IAM database**: [Kaggle IAM Database]([https://github.com/facebookresearch/IMGUR5K-Handwriting-Dataset](https://www.kaggle.com/datasets/nibinv23/iam-handwriting-word-database))
+   - **IAM database**: [Kaggle IAM Database](https://www.kaggle.com/datasets/nibinv23/iam-handwriting-word-database))
 
 ## Quick Start
 Run the [`code-overview.ipynb`](code-overview.ipynb) to go through an overview the data-processing, training and testing process. 
@@ -17,8 +17,8 @@ Run the [`code-overview.ipynb`](code-overview.ipynb) to go through an overview t
 ## Usage
 1.  For Imgur dataset, run [`imgur-process_dataset.ipynb`](/imgur/dataset/process_dataset.ipynb) to crop full-page images into word images and save the word-image data on the respective directory.
 2.  Make sure  *dataset_info* for IAM and IMGUR dataset are in the same folder with the downloaded dataset.
-3.  Run **train_script.py** in `iam/` and `imgur` to train the model.
-4.  Run **eval_script.py** in `iam/` and `imgur` to evaluate the model.
+3.  Run **train_script.py** in `iam/` and `imgur/` to train the model.
+4.  Run **eval_script.py** in `iam/` and `imgur/` to evaluate the model.
 
 ## Results
 The output of our research is stored in [`results`](/results) folder, this includes evaluation on the Imgur and IAM testing set for the following 4 models:
