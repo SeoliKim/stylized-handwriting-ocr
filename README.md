@@ -4,7 +4,7 @@ This project explores how differences in handwriting style diversity impact mode
 
 ## Installation
 Complete the following steps:
-1. Clone the repository to your desired location using ```git clone https:///SeoliKim/stylized-handwriting-ocr```.
+1. Clone the repository to your desired location using ```[git clone https://github.com/SeoliKim/stylized-handwriting-ocr.git```.
 2. Create python virtual environment using *requirements.txt*
 3. Download the following database:
    - **IMGUR database**: [IMGUR5K Handwriting Dataset Repository](https://github.com/facebookresearch/IMGUR5K-Handwriting-Dataset)
