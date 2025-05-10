@@ -22,10 +22,10 @@ Run the [`code-overview.ipynb`](code-overview.ipynb) to go through an overview t
 
 ## Results
 The output of our research is stored in [`results`](/results) folder, this includes evaluation on the Imgur and IAM testing set for the following 4 models:
-- base-imgur: microsoft/trocr-base-stage1 fine-tuned on Imgur dataset
-- small-imgur: microsoft/trocr-small-stage1 fine-tuned on Imgur dataset
-- base-iam: microsoft/trocr-base-stage1 fine-tuned on IAM dataset
-- small-iam: microsoft/trocr-small-stage1 fine-tuned on IAM dataset
+- base-imgur: [microsoft/trocr-base-stage1](https://huggingface.co/microsoft/trocr-base-stage1) fine-tuned on Imgur dataset
+- small-imgur: [microsoft/trocr-small-stage1](https://huggingface.co/microsoft/trocr-small-stage1) fine-tuned on Imgur dataset
+- base-iam: [microsoft/trocr-base-stage1](https://huggingface.co/microsoft/trocr-base-stage1) fine-tuned on IAM dataset
+- small-iam: [microsoft/trocr-small-stage1](https://huggingface.co/microsoft/trocr-small-stage1) fine-tuned on IAM dataset
 - [base-handwritten](https://huggingface.co/microsoft/trocr-base-handwritten): public fine-tuned model
 - [small-handwritten](https://huggingface.co/microsoft/trocr-small-handwritten): public fine-tuned model
 
